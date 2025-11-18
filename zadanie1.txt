@@ -1,0 +1,3 @@
+1.Użytkownik może napisać wiek i pensję jako za dużą bądź ujemną liczbę
+2.Możemy wpisać imie i nazwisko jako np. liczby i znaki
+3.Ponieważ wszystko i wszyscy mają dostęp i uprawnienia do wartości i ich zmian
