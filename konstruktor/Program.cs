@@ -18,7 +18,8 @@ namespace Produkt
                 }
                 set
                 {
-                    if (value <= 0) {
+                    if (value <= 0)
+                    {
                         throw new ArgumentException("Cena musi być większa od 0");
                     }
                     else
@@ -55,7 +56,8 @@ namespace Produkt
                 }
                 set
                 {
-                    if (string.IsNullOrEmpty(value)) {
+                    if (string.IsNullOrEmpty(value))
+                    {
                         throw new ArgumentException("Nazwa nie może być pusta");
                     }
                     else
@@ -64,7 +66,7 @@ namespace Produkt
                     }
                 }
             }
-            public Produkt(string naz , int cena , int ilosc)
+            public Produkt(string naz, int cena, int ilosc)
             {
                 if (string.IsNullOrEmpty(naz))
                 {
@@ -91,18 +93,47 @@ namespace Produkt
                 {
                     this.iloscNaMagazynie = ilosc;
                 }
-                
+
+            }
+            public decimal obliczCenePoRabacie(decimal procent)
+            {
+                if(procent < 0 || procent > 100)
+                {
+                    throw new ArgumentException("procenty muszą być w przedziale 0-100");
+                }
+                else
+                {
+                    return cena-cena*(procent/100);
+                }
+            }
+            public bool CzyDostepny()
+            {
+                return (iloscNaMagazynie > 0);
+            }
+            public void SprzedajSztuki(int ilosc)
+            {
+                if (iloscNaMagazynie < ilosc){
+                    Console.WriteLine("Błąd:za mała ilość na magazynie");
+                }
+                else
+                {
+                    iloscNaMagazynie -= ilosc;
+                }
             }
             public override string ToString()
             {
                 return $"nazwa:{nazwa} cena:{cena} ilość:{iloscNaMagazynie}";
             }
+            
         }
         static void Main(string[] args)
         {
-            Produkt p1 = new Produkt("",6,-7);
+            Produkt p1 = new Produkt("Kiełbasa", 6, 7);
             Console.WriteLine(p1);
-            
+            Console.WriteLine(p1.CzyDostepny());
+            Console.WriteLine(p1.obliczCenePoRabacie(20));
+            p1.SprzedajSztuki(5);
+            Console.WriteLine(p1);
 
         }
     }
