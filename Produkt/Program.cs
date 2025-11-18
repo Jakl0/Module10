@@ -58,13 +58,40 @@ namespace Produkt
                     if (string.IsNullOrEmpty(value)) {
                         throw new ArgumentException("Nazwa nie może być pusta");
                     }
+                    else
+                    {
+                        nazwa = value;
+                    }
                 }
             }
             public Produkt(string naz , int cena , int ilosc)
             {
-                this.nazwa = naz;
-                this.cena = cena;
-                this.iloscNaMagazynie = ilosc;
+                if (string.IsNullOrEmpty(naz))
+                {
+                    throw new ArgumentException("Nazwa nie może być pusta");
+                }
+                else
+                {
+                    this.nazwa = naz;
+                }
+                if (cena < 0)
+                {
+                    throw new ArgumentException("Cena nie może być ujemna");
+                }
+                else
+                {
+                    this.cena = cena;
+                }
+
+                if (ilosc < 0)
+                {
+                    throw new ArgumentException("Ilość nie może być ujemna");
+                }
+                else
+                {
+                    this.iloscNaMagazynie = ilosc;
+                }
+                
             }
             public override string ToString()
             {
@@ -73,7 +100,7 @@ namespace Produkt
         }
         static void Main(string[] args)
         {
-            Produkt p1 = new Produkt("Kiełbasa",6,7);
+            Produkt p1 = new Produkt("Kiełbasa",6,-7);
             Console.WriteLine(p1);
             
 
