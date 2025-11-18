@@ -100,7 +100,7 @@ namespace Produkt
         }
         static void Main(string[] args)
         {
-            Produkt p1 = new Produkt("",6,-7);
+            Produkt p1 = new Produkt("",6,7);
             Console.WriteLine(p1);
             
 
